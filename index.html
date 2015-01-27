@@ -27,7 +27,7 @@
       var map = L.mapbox.map('map', 'msayler.map-nscs81d9')
           .setView([45.770322, -122.530139], 11);
       
-      var sampleData = L.geoJson(SampleData)
+      var sampleData = L.geoJson(SampleData);
       
       var markers = new L.MarkerClusterGroup({disableClusteringAtZoom: 18,
                       iconCreateFunction: function (cluster) {
