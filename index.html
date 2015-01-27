@@ -5,6 +5,7 @@
     <title>A simple map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.3.0/turf.min.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
     <style>
       body { margin:0; padding:0; }
@@ -16,7 +17,7 @@
     <script>
     L.mapbox.accessToken = 'pk.eyJ1IjoibXNheWxlciIsImEiOiJQVnpZOU5zIn0.h3YR_dMlhBCP2IxsU8VYcg';
     var map = L.mapbox.map('map', 'msayler.map-nscs81d9')
-        .setView([40, -74.50], 9);
+        .setView([45.523303, -122.655814], 9);
     </script>
   </body>
 </html>
