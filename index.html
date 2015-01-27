@@ -55,7 +55,6 @@
         var a = SampleData["features"][i];
         var title = a["properties"]["Owner"];
         var marker = iconLookup[title];
-        marker.bindPopup(title);
         markers.addLayer(marker);
       };
       
