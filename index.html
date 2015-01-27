@@ -7,6 +7,7 @@
     
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.3.0/turf.min.js'></script>
+    <script src='https://raw.githubusercontent.com/jseppi/Leaflet.MakiMarkers/master/Leaflet.MakiMarkers.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
     
     <script src="./SampleData.geojson" type="text/javascript"></script>
@@ -27,18 +28,37 @@
       var map = L.mapbox.map('map', 'msayler.map-nscs81d9')
           .setView([45.770322, -122.530139], 11);
       
-      var comp1Icon = L.icon();
-      var comp1Icon = L.icon();
-      var comp1Icon = L.icon();
-      var comp1Icon = L.icon();
-      var comp1Icon = L.icon();
-      var comp1Icon = L.icon();
-      var comp1Icon = L.icon();
+      var comp1Icon = L.MakiMarkers.icon({icon: "marker", color: "#DC143C", size: "m"});
+      var comp2Icon = L.MakiMarkers.icon({icon: "marker", color: "#00CED1", size: "m"});
+      var comp3Icon = L.MakiMarkers.icon({icon: "marker", color: "#DAA520", size: "m"});
+      var comp4Icon = L.MakiMarkers.icon({icon: "marker", color: "#008000", size: "m"});
+      var comp5Icon = L.MakiMarkers.icon({icon: "marker", color: "#9370DB", size: "m"});
+      var comp6Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA07A", size: "m"});
+      var comp7Icon = L.MakiMarkers.icon({icon: "marker", color: "#4682B4", size: "m"});
+      var comp8Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA500", size: "m"});
       
+      var iconLookup = {
+        "Company1":comp1Icon,
+        "Company2":comp2Icon,
+        "Company3":comp3Icon,
+        "Company4":comp4Icon,
+        "Company5":comp5Icon,
+        "Company6":comp6Icon,
+        "Company7":comp7Icon,
+        "Company8":comp8Icon,
+      };
       
       var sampleData = L.geoJson(SampleData);
       var markers = new L.MarkerClusterGroup();
-      markers.addLayer(sampleData);
+      
+      for (var i = 0; i < SampleData["features"].length; i++) {
+        var a = SampleData["features"][i];
+        var title = a["properties"]["Owner"];
+        var marker = iconLookup[title];
+        marker.bindPopup(title);
+        markers.addLayer(marker);
+      };
+      
       map.addLayer(markers);
       
     </script>
