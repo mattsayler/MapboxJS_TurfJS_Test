@@ -123,7 +123,7 @@
         if (companySets[key].length > 2 && key !== "__proto__") { //make sure there are more than 2 points
           var pointSet = turf.featurecollection(companySets[key]);
           var hull = turf.concave(pointSet, 5);
-          var result = turf.featurecollection(pointSet.features.concat(hull));
+          var result = L.geoJson(turf.featurecollection(pointSet.features.concat(hull)));
           map.addLayer(result);
         }
       };
