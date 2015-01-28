@@ -75,9 +75,9 @@
                                               showCoverageOnHover:false, 
                                               disableClusteringAtZoom: 13});
       
-      var schools = new L.mapbox.featureLayer();
+      var schools = new L.featureGroup();
       
-      //add schools to feature layer
+      //add schools to feature group
       //only adding elementary, junior, high, and college schools
       for (var i = 0; i < SchoolsClarkCounty["features"].length; i++) {
         var a = SchoolsClarkCounty["features"][i];
