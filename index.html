@@ -122,12 +122,14 @@
       
       //create concave polygons
       for (var key in companySets) {
-        var pointSet = turf.featurecollection(companySets[key]);
-        var hull = turf.concave(pointSet, 0.25);
-        var result = L.geoJson(
-                      turf.featurecollection(pointSet.features.concat(hull))
-                    );
-        map.addLayer(result);
+        if (companySets[key].length > 2) { //make sure there are more than 2 points
+          var pointSet = turf.featurecollection(companySets[key]);
+          var hull = turf.concave(pointSet, 0.25);
+          var result = L.geoJson(
+                        turf.featurecollection(pointSet.features.concat(hull))
+                      );
+          map.addLayer(result);
+        }
       };
       
       
