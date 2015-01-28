@@ -109,14 +109,12 @@
       for (var i = 0; i < SampleData["features"].length; i++) {
         var a = SampleData["features"][i];
         var title = a["properties"]["Owner"];
-        var lat = a["geometry"]["coordinates"][1];
-        var lon = a["geometry"]["coordinates"][0];
         if (typeof companySets[title] !== "undefined") {
-          companySets[title].push(turf.point([lat,lon], {name: title}));
+          companySets[title].push(a);
         }
         else {
           companySets[title] = [];
-          companySets[title].push(turf.point([lat,lon], {name: title}));
+          companySets[title].push(a);
         }
       }
       
