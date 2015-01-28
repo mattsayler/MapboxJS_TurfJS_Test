@@ -71,8 +71,8 @@
       var sampleData = L.geoJson(SampleData);
       
       //marker clusters
-      var schoolClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
-      var sampleDataClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
+      var schoolClusters = new L.MarkerClusterGroup(); //{disableClusteringAtZoom: 14}
+      var sampleDataClusters = new L.MarkerClusterGroup();
       
       //add schools to cluster group
       //only adding elementary, junior, high, and college schools
