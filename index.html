@@ -122,6 +122,7 @@
       for (var key in companySets) {
         if (companySets[key].length > 2 && key !== "__proto__") { //make sure there are more than 2 points
           var color = "#" + iconLookup[key].options.color
+          console.log("Poly color: " + color)
           var pointSet = turf.featurecollection(companySets[key]);
           var hull = turf.concave(pointSet, 5);
           var result = L.geoJson(turf.featurecollection(pointSet.features.concat(hull)), {
