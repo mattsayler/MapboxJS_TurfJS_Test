@@ -126,9 +126,9 @@
           var hull = turf.concave(pointSet, 5);
           var result = L.geoJson(turf.featurecollection(pointSet.features.concat(hull)), {
                                   pointToLayer: L.mapbox.marker.style,
-                                  style: {color: color} 
+                                  style: {icon: null, color: color} 
                                 });
-          //map.addLayer(result);
+          map.addLayer(result);
         }
       };
       
