@@ -65,11 +65,19 @@
         "high":highIcon,
         "college":collegeIcon
       };
-
+      
+      function clusterSymbol(cluster){
+        var childCount = cluster.getChildCount();
+        var c = ' marker-cluster-large';
+        return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+      }
+      
       //marker clusters
-      var clusters = new L.MarkerClusterGroup({spiderfyOnMaxZoom:true, 
-                                              showCoverageOnHover:false, 
-                                              disableClusteringAtZoom: 13});
+      var clusters = new L.MarkerClusterGroup({spiderfyOnMaxZoom: true, 
+                                              showCoverageOnHover: false, 
+                                              disableClusteringAtZoom: 15,
+                                              iconCreateFunction: clusterSymbol(cluster)
+                                              });
       
       var schools = new L.featureGroup();
       
