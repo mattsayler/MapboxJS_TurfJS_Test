@@ -79,13 +79,13 @@
       for (var i = 0; i < SchoolsClarkCounty["features"].length; i++) {
         var a = SchoolsClarkCounty["features"][i];
         var type = a["properties"]["Type"];
+        var title = a["properties"]["Name"];
         if (typeof iconLookup[type] !== "undefined") {
           var lat = a["geometry"]["coordinates"][1];
           var lon = a["geometry"]["coordinates"][0];
-          var title = a["properties"]["Name"];
           var marker = L.marker(
               new L.LatLng(lat, lon),
-              {icon: iconLookup[title], title: title}
+              {icon: iconLookup[type], title: title}
             );
           schoolClusters.addLayer(marker);
         };
