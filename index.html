@@ -76,7 +76,7 @@
       
       //add schools to cluster group
       //only adding elementary, junior, high, and college schools
-      for (var i = 0, i < SchoolsClarkCounty["features"].length, i++) {
+      for (var i = 0; i < SchoolsClarkCounty["features"].length; i++) {
         var a = SchoolsClarkCounty["features"][i];
         var type = a["properties"]["type"];
         if (iconLookup[type]) {
