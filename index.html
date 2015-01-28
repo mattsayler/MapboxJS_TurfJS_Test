@@ -119,7 +119,7 @@
       }
       
       //create concave polygons
-      for (var key; typeof companySets.key !== 'undefined') {
+      for (var key in companySets) {
         if (companySets[key].length > 2 && key !== "__proto__") { //make sure there are more than 2 points
           var pointSet = turf.featurecollection(companySets[key]);
           var hull = turf.concave(pointSet, 5);
