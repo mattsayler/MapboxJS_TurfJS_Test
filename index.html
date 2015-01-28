@@ -122,13 +122,13 @@
       for (var key in companySets) {
         if (companySets[key].length > 2 && key !== "__proto__") { //make sure there are more than 2 points
           var color = "#" + iconLookup[key].options.color
-          var pointSet = L.geoJson(companySets[key]);
+          var pointSet = turf.featurecollection(companySets[key]);
           var hull = turf.concave(pointSet, 5);
           var result = L.geoJson(turf.featurecollection(pointSet.features.concat(hull)), {
                                   pointToLayer: L.mapbox.marker.style,
                                   style: {color: color} 
                                 });
-          map.addLayer(result);
+          //map.addLayer(result);
         }
       };
       
