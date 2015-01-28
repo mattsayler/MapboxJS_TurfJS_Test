@@ -79,7 +79,7 @@
       for (var i = 0; i < SchoolsClarkCounty["features"].length; i++) {
         var a = SchoolsClarkCounty["features"][i];
         var type = a["properties"]["type"];
-        if (iconLookup[type] == true) {
+        if (typof iconLookup[type] !== "undefined") {
           var lat = a["geometry"]["coordinates"][1];
           var lon = a["geometry"]["coordinates"][0];
           var title = a["properties"]["Name"];
