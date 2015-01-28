@@ -5,14 +5,17 @@
     <title>Mapbox + Turf Test</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     
+    <!-- javascript -->
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js' type="text/javascript"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v1.3.0/turf.min.js' type="text/javascript"></script>
     <script src='Leaflet.MakiMarkers.js' type="text/javascript"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js' type="text/javascript"></script>
     
+    <!-- data -->
     <script src="SampleData.geojson" type="text/javascript"></script>
     <script src="SchoolsClarkCounty.geojson" type="text/javascript"></script>
     
+    <!-- css -->
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
     <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
     <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
@@ -22,14 +25,17 @@
       #map { position:absolute; top:0; bottom:0; width:100%; }
     </style>
   </head>
+  
   <body>
     <div id='map'></div>
+    
     <script>
       L.mapbox.accessToken = 'pk.eyJ1IjoibXNheWxlciIsImEiOiJQVnpZOU5zIn0.h3YR_dMlhBCP2IxsU8VYcg';
       var map = L.mapbox.map('map', 'msayler.map-nscs81d9')
           .setView([45.770322, -122.530139], 11);
       
-      //setup icons using jseppi's MakiMarkers plugin 
+      //setup icons using jseppi's MakiMarkers plugin:
+      //https://github.com/jseppi/Leaflet.MakiMarkers
       var comp1Icon = L.MakiMarkers.icon({icon: "marker", color: "#DC143C", size: "m"});
       var comp2Icon = L.MakiMarkers.icon({icon: "marker", color: "#00CED1", size: "m"});
       var comp3Icon = L.MakiMarkers.icon({icon: "marker", color: "#DAA520", size: "m"});
@@ -68,7 +74,8 @@
       var schoolClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
       var sampleDataClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
       
-      //only adding elementary, junior, high, and college schools to map
+      //add schools to cluster group
+      //only adding elementary, junior, high, and college schools
       for (var i = 0, i < SchoolsClarkCounty["features"].length, i++) {
         var a = SchoolsClarkCounty["features"][i];
         var type = a["properties"]["type"];
@@ -84,6 +91,7 @@
         };
       };
       
+      //add sample data to cluster group
       for (var i = 0; i < SampleData["features"].length; i++) {
         var a = SampleData["features"][i];
         var title = a["properties"]["Owner"];
