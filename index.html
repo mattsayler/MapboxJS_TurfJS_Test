@@ -49,8 +49,7 @@
       };
       
       var sampleData = L.geoJson(SampleData);
-      var markers = new L.MarkerClusterGroup({disableClusteringAtZoom: 14, 
-                                              singleMarkerMode: true});
+      var markers = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
       
       for (var i = 0; i < SampleData["features"].length; i++) {
         var a = SampleData["features"][i];
