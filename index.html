@@ -36,14 +36,14 @@
       
       //setup icons using jseppi's MakiMarkers plugin:
       //https://github.com/jseppi/Leaflet.MakiMarkers
-      var comp1Icon = L.MakiMarkers.icon({icon: "marker", color: "#DC143C", size: "m"});
-      var comp2Icon = L.MakiMarkers.icon({icon: "marker", color: "#00CED1", size: "m"});
-      var comp3Icon = L.MakiMarkers.icon({icon: "marker", color: "#DAA520", size: "m"});
-      var comp4Icon = L.MakiMarkers.icon({icon: "marker", color: "#008000", size: "m"});
-      var comp5Icon = L.MakiMarkers.icon({icon: "marker", color: "#9370DB", size: "m"});
-      var comp6Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA07A", size: "m"});
-      var comp7Icon = L.MakiMarkers.icon({icon: "marker", color: "#4682B4", size: "m"});
-      var comp8Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA500", size: "m"});
+      var comp1Icon = L.MakiMarkers.icon({icon: "marker", color: "#DC143C", size: "s"});
+      var comp2Icon = L.MakiMarkers.icon({icon: "marker", color: "#00CED1", size: "s"});
+      var comp3Icon = L.MakiMarkers.icon({icon: "marker", color: "#DAA520", size: "s"});
+      var comp4Icon = L.MakiMarkers.icon({icon: "marker", color: "#008000", size: "s"});
+      var comp5Icon = L.MakiMarkers.icon({icon: "marker", color: "#9370DB", size: "s"});
+      var comp6Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA07A", size: "s"});
+      var comp7Icon = L.MakiMarkers.icon({icon: "marker", color: "#4682B4", size: "s"});
+      var comp8Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA500", size: "s"});
       
       var elementaryIcon = L.MakiMarkers.icon({icon: "school", color: "#00CC00", size: "m"});
       var juniorIcon = L.MakiMarkers.icon({icon: "school", color: "#53A6CF", size: "m"});
@@ -71,9 +71,13 @@
       var sampleData = L.geoJson(SampleData);
       
       //marker clusters
-      var clusters = new L.MarkerClusterGroup({spiderfyOnMaxZoom:true,showCoverageOnHover:false}); //{disableClusteringAtZoom: 14}
+      var clusters = new L.MarkerClusterGroup({spiderfyOnMaxZoom:true, 
+                                              showCoverageOnHover:false, 
+                                              disableClusteringAtZoom: 13});
       
-      //add schools to cluster group
+      var schools = new L.mapbox.featureLayer();
+      
+      //add schools to feature layer
       //only adding elementary, junior, high, and college schools
       for (var i = 0; i < SchoolsClarkCounty["features"].length; i++) {
         var a = SchoolsClarkCounty["features"][i];
@@ -86,7 +90,7 @@
               new L.LatLng(lat, lon),
               {icon: iconLookup[type], title: title}
             );
-          clusters.addLayer(marker);
+          schools.addLayer(marker);
         }
       }
       
