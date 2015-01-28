@@ -78,7 +78,7 @@
       //only adding elementary, junior, high, and college schools
       for (var i = 0; i < SchoolsClarkCounty["features"].length; i++) {
         var a = SchoolsClarkCounty["features"][i];
-        var type = a["properties"]["type"];
+        var type = a["properties"]["Type"];
         if (typeof iconLookup[type] !== "undefined") {
           var lat = a["geometry"]["coordinates"][1];
           var lon = a["geometry"]["coordinates"][0];
