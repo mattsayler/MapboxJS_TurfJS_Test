@@ -29,6 +29,7 @@
       var map = L.mapbox.map('map', 'msayler.map-nscs81d9')
           .setView([45.770322, -122.530139], 11);
       
+      //setup icons using jseppi's MakiMarkers plugin 
       var comp1Icon = L.MakiMarkers.icon({icon: "marker", color: "#DC143C", size: "m"});
       var comp2Icon = L.MakiMarkers.icon({icon: "marker", color: "#00CED1", size: "m"});
       var comp3Icon = L.MakiMarkers.icon({icon: "marker", color: "#DAA520", size: "m"});
@@ -37,11 +38,13 @@
       var comp6Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA07A", size: "m"});
       var comp7Icon = L.MakiMarkers.icon({icon: "marker", color: "#4682B4", size: "m"});
       var comp8Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA500", size: "m"});
+      
       var elementaryIcon = L.MakiMarkers.icon({icon: "school", color: "#FFA500", size: "m"});
       var juniorIcon = L.MakiMarkers.icon({icon: "school", color: "#FFA500", size: "m"});
       var highIcon = L.MakiMarkers.icon({icon: "school", color: "#FFA500", size: "m"});
       var collegeIcon = L.MakiMarkers.icon({icon: "college", color: "#FFA500", size: "m"});
       
+      //dictionary to make using above icons easier
       var iconLookup = {
         "Company1":comp1Icon,
         "Company2":comp2Icon,
@@ -57,16 +60,19 @@
         "college":collegeIcon
       };
       
+      //geojson
       var schools = L.geoJson(SchoolsClarkCounty);
       var sampleData = L.geoJson(SampleData);
       
+      //marker clusters
       var schoolClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
       var sampleDataClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
       
+      //only adding elementary, junior, high, and college schools to map
       for (var i = 0, i < SchoolsClarkCounty["features"].length, i++) {
         var a = SchoolsClarkCounty["features"][i];
         var type = a["properties"]["type"];
-        if iconLookup[type] {
+        if (iconLookup[type]) {
           var lat = a["geometry"]["coordinates"][1];
           var lon = a["geometry"]["coordinates"][0];
           var title = a["properties"]["Name"];
@@ -90,6 +96,7 @@
         sampleDataClusters.addLayer(marker);
       };
       
+      //add data to map
       map
         .addLayer(sampleDataClusters)
         .addLayer(schoolClusters);
