@@ -11,6 +11,7 @@
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js' type="text/javascript"></script>
     
     <script src="SampleData.geojson" type="text/javascript"></script>
+    <script src="SchoolsClarkCounty.geojson" type="text/javascript"></script>
     
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
     <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
@@ -36,6 +37,10 @@
       var comp6Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA07A", size: "m"});
       var comp7Icon = L.MakiMarkers.icon({icon: "marker", color: "#4682B4", size: "m"});
       var comp8Icon = L.MakiMarkers.icon({icon: "marker", color: "#FFA500", size: "m"});
+      var elementaryIcon = L.MakiMarkers.icon({icon: "school", color: "#FFA500", size: "m"});
+      var juniorIcon = L.MakiMarkers.icon({icon: "school", color: "#FFA500", size: "m"});
+      var highIcon = L.MakiMarkers.icon({icon: "school", color: "#FFA500", size: "m"});
+      var collegeIcon = L.MakiMarkers.icon({icon: "college", color: "#FFA500", size: "m"});
       
       var iconLookup = {
         "Company1":comp1Icon,
@@ -46,10 +51,32 @@
         "Company6":comp6Icon,
         "Company7":comp7Icon,
         "Company8":comp8Icon,
+        "elementary":elemenraryIcon,
+        "junior":juniorIcon,
+        "high":highIcon,
+        "college":collegeIcon
       };
       
+      var schools = L.geoJson(SchoolsClarkCounty);
       var sampleData = L.geoJson(SampleData);
-      var markers = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
+      
+      var schoolClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
+      var sampleDataClusters = new L.MarkerClusterGroup({disableClusteringAtZoom: 14});
+      
+      for (var i = 0, i < SchoolsClarkCounty["features"].length, i++) {
+        var a = SchoolsClarkCounty["features"][i];
+        var type = a["properties"]["type"];
+        if iconLookup[type] {
+          var lat = a["geometry"]["coordinates"][1];
+          var lon = a["geometry"]["coordinates"][0];
+          var title = a["properties"]["Name"];
+          var marker = L.marker(
+              new L.LatLng(lat, lon),
+              {icon: iconLookup[title], title: title}
+            );
+          schoolClusters.addLayer(marker)
+        };
+      };
       
       for (var i = 0; i < SampleData["features"].length; i++) {
         var a = SampleData["features"][i];
@@ -59,11 +86,13 @@
         var marker = L.marker(
             new L.LatLng(lat, lon), 
             {icon: iconLookup[title], title: title}
-          )
-        markers.addLayer(marker);
+          );
+        sampleDataClusters.addLayer(marker);
       };
       
-      map.addLayer(markers);
+      map
+        .addLayer(sampleDataClusters)
+        .addLayer(schoolClusters);
       
     </script>
   </body>
