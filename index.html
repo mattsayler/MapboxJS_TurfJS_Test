@@ -65,11 +65,7 @@
         "high":highIcon,
         "college":collegeIcon
       };
-      
-      //geojson
-      var schools = L.geoJson(SchoolsClarkCounty);
-      var sampleData = L.geoJson(SampleData);
-      
+
       //marker clusters
       var clusters = new L.MarkerClusterGroup({spiderfyOnMaxZoom:true, 
                                               showCoverageOnHover:false, 
@@ -137,7 +133,7 @@
       
       
       //add data to map
-      map.addLayer(clusters).addlayer(schools)
+      map.addLayer(clusters).addlayer(schools);
       
     </script>
   </body>
