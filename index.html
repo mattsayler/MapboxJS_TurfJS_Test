@@ -124,11 +124,11 @@
           var color = "#" + iconLookup[key].options.color
           var pointSet = turf.featurecollection(companySets[key]);
           var hull = turf.concave(pointSet, 5);
-          var result = L.geoJson(turf.featurecollection(pointSet.features.concat(hull)), {
+          var result = L.geoJson(hull, {
                                   pointToLayer: L.mapbox.marker.style,
-                                  style: {icon: null, color: color} 
+                                  style: {color: color} 
                                 });
-          map.addLayer(hull);
+          map.addLayer(result);
         }
       };
       
