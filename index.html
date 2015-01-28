@@ -104,6 +104,33 @@
         sampleDataClusters.addLayer(marker);
       };
       
+      //make sets of features
+      var companySets = {};
+      for (var i = 0; i < SampleData["features"].length; i++) {
+        var a = SampleData["features"][i];
+        var title = a["properties"]["Owner"];
+        var lat = a["geometry"]["coordinates"][1];
+        var lon = a["geometry"]["coordinates"][0];
+        if (typeof companySets[title] !== "undefined") {
+          companySets[title].push(turf.point([lat,lon], {name: title}));
+        };
+        else {
+          companySets[title] = [];
+          companySets[title].push(turf.point([lat,lon], {name: title}));
+        };
+      };
+      
+      //create concave polygons
+      for (var key in companySets) {
+        var pointSet = turf.featurecollection(companySets[key]);
+        var hull = turf.concave(pointSet, 0.25);
+        var result = L.geoJson(
+                      turf.featurecollection(points.features.concat(hull))
+                    );
+        map.addLayer(result);
+      };
+      
+      
       //add data to map
       map
         .addLayer(sampleDataClusters)
