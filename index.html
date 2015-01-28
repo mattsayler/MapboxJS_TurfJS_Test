@@ -71,8 +71,7 @@
       var sampleData = L.geoJson(SampleData);
       
       //marker clusters
-      var schoolClusters = new L.MarkerClusterGroup(); //{disableClusteringAtZoom: 14}
-      var sampleDataClusters = new L.MarkerClusterGroup();
+      var clusters = new L.MarkerClusterGroup({spiderfyOnMaxZoom:true}); //{disableClusteringAtZoom: 14}
       
       //add schools to cluster group
       //only adding elementary, junior, high, and college schools
@@ -87,7 +86,7 @@
               new L.LatLng(lat, lon),
               {icon: iconLookup[type], title: title}
             );
-          schoolClusters.addLayer(marker);
+          clusters.addLayer(marker);
         }
       }
       
@@ -101,7 +100,7 @@
             new L.LatLng(lat, lon), 
             {icon: iconLookup[title], title: title}
           );
-        sampleDataClusters.addLayer(marker);
+        clusters.addLayer(marker);
       }
       
       //make sets of features
@@ -134,9 +133,7 @@
       
       
       //add data to map
-      map
-        .addLayer(sampleDataClusters)
-        .addLayer(schoolClusters);
+      map.addLayer(clusters)
       
     </script>
   </body>
