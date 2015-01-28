@@ -126,7 +126,7 @@
           var hull = turf.concave(pointSet, 5);
           var result = L.geoJson(turf.featurecollection(pointSet.features.concat(hull)), {
                                   pointToLayer: L.mapbox.marker.style,
-                                  style: {"marker-color": color} });
+                                  style: {"marker-color": {color: "#ff0000"}} });
           console.log(result);
           map.addLayer(result);
         }
