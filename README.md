@@ -2,12 +2,12 @@
 
 __*Which prompt did you attempt?*__
 
-Custom. Messing around with some points from our production data (scrubbed to be generic), and school data from the county. Attempt is to create concave polygons for each company and then do something like figure out which schools fall in which "territories".
+Custom. Messing around with some points from our production data (scrubbed to be generic), and school data from the county. Attempt is to create concave polygons for each company and then do something like figure out which schools fall in which "territories". Got as far as making the concave polygons.
 
 __*What turf modules did you use?*__
 
-featurecollection
-concave
+ - featurecollection
+ - concave
 
 __*What was helpful about the documentation?*__
 
